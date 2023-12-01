@@ -1,0 +1,81 @@
+
+{% extends 'base/base.html' %}
+
+{% block title %}Registro de usuario{% endblock %}
+
+{% block content %}
+{% if request.user.is_staff or request.user.is_superuser or request.user.admin %}
+
+<div class="card" style="margin-top: -195px;">
+    <div class="card-header">
+        <h3 style="text-align: center">Registro de Usuarios</h3>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                  <th class="h5">ID</th>
+                    <th class="h5">Email</th>
+                    <th class="h5">Username</th>
+                    <th class="h5">Nombres</th>
+                    <th class="h5">Apellidos</th>
+                    <th class="h5">Dni</th>
+                    <th class="h5">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuarios in object_list %}
+                <tr>
+                    <td class="h6">{{usuarios.id}}</td>
+                    <td class="h6">{{usuarios.email}}</td>
+                    <td class="h6">{{usuarios.username}}</td>
+                    <td class="h6">{{usuarios.nombres}}</td>
+                    <td class="h6">{{usuarios.apellidos}}</td>
+                    <td class="h6">{{usuarios.dni}}</td>
+                    <td>
+                        <a name="" id="" class="btn btn-primary" href="/show_user/{{ usuarios.id }}" role="button">Ver</a>
+                        <a name="" id="" class="btn btn-primary" href="/edit_user/{{ usuarios.id }}" role="button">Editar</a>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <a name="" id="" href="/delete_user/{{ usuarios.id }}" role="button"></a>
+                            Eliminar
+                          </button>
+                          
+                          <!-- Modal -->
+                          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Advertencia</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body fs-6">
+                                  ¿Esta seguro que desea eliminar el usuario?
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-danger">Borrar Usuario</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        
+                    
+                    
+                    
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% else %}
+
+<div class="text-center">
+    <img src="/static/imagenes/error403.jpg" class="rounded"></img>
+  <h3>No deberías estar acá. Para volver, <a href="/">hace click acá</a></h3>
+</div>
+
+{% endif %}
+
+{% endblock %}

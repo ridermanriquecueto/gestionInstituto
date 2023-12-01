@@ -1,0 +1,55 @@
+<!-- lista_materias_user.html -->
+{% extends 'base/base.html' %}
+
+{% block title %}Lista de Materias{% endblock %}
+
+
+{% block content %}
+
+    <div class="card">
+        <div class="card-headers">
+            <h3 class="card-title">Listado de Materias</h3>
+        </div>
+
+        <div class="card-body">
+            <table class="table table-striped table-bordered">
+                {% load static %}
+                    <tr>
+                        <th class="h5">ID</th>
+                        <th class="h5">Nombre</th>
+                        <th class="h5">Año</th>
+                        <th class="h5">Carrera</th>
+                        <th class="h5">Profesor</th>
+                        <th class="h5">Horario</th>
+                        <th class="h5">Acciones</th>
+                    </tr>
+                <tbody>
+                    {% if materias %}
+                        {% for materia in materias %}
+                            <tr>
+                                <td class="h6">{{materia.id}}</td>
+                                <td class="h6">{{materia.nombre_materia}}</td>
+                                <td class="h6">{{materia.anio}}</td>
+                                <td class="h6">{{materia.carrera.nombre_carrera}}</td>
+                                <td class="h6">{{materia.profesor.nombres}}</td>
+                                <td class="h6">{{materia.Horario}}</td>
+
+                                <td>
+                                    <a class="btn btn-primary" href="{% url 'ver_materias' id=materia.id %}" role="button">Ver</a>
+                                    <a class="btn btn-primary" href="{% url 'editar_materia' id=materia.id %}" role="button">Editar</a>
+                                    <a class="btn btn-danger" href="{% url 'eliminar_materia' id=materia.id %}" role="button">Eliminar</a>
+
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <div class="alert alert-danger"> No hay materias disponibles.</div>
+                    {% endif %}
+                </tbody>
+            </table>
+          
+        </div>
+    </div>
+   
+
+{% endblock %}

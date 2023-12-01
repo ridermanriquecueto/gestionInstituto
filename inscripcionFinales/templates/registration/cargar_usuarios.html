@@ -1,0 +1,24 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Carga Usuarios Masiva{% endblock %}
+
+{% block content %}
+<div class="container d-flex align-items-center justify-content-center">
+    <div class="text-center">
+        <h2 class="mb-4">Carga Masiva de Usuarios</h2>
+        <form method="post" enctype="multipart/form-data" class="form">
+            {% csrf_token %}
+            <div class="mb-3" style="position: relative;">
+                <label for="csv_file" class="form-label">
+                    <strong>Seleccionar archivo CSV</strong>
+                </label>
+                <input type="file" class="form-control" name="csv_file" id="csv_file" accept=".csv" required>
+                <button type="submit" class="btn btn-success btn-lg btn-block" ">
+                    <span class="text-uppercase">Subir Archivo</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+

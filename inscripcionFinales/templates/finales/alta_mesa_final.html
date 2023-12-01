@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Alta de Mesa Final{% endblock %}
+
+{% block content %}
+    <h1>Alta de Mesa Final</h1>
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label for="{{ form.materia.id_for_label }}">Materia:</label>
+            {{ form.materia }}
+        </div>
+
+        <div class="mb-3">
+            <label for="{{ form.llamado.id_for_label }}">Llamado:</label>
+            {{ form.llamado }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+{% endblock %}
